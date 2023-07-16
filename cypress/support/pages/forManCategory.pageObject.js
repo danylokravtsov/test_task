@@ -20,13 +20,14 @@ class ForManPageObject extends PageObject {
   }
 
   assertPriceSortedAsc() {
-    cy.get('.simple-slider-list__price')
+    cy.get('.catalog-products')
+    .find('.simple-slider-list__price')
     .find('.price_item')
     .then(($prices) => {
       const pricesArray = $prices.toArray().map((el) => parseFloat(el.innerText))
       
-      for (let i = 1; i < pricesArray.length; i++) {        
-        expect(pricesArray[i]).to.be.greaterThan(pricesArray[i - 1]);
+      for (let i = 1; i < pricesArray.length; i++) {
+        expect(pricesArray[i]).to.be.greaterThan(pricesArray[i - 1]);  
       }
     })
 
