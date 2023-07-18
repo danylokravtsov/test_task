@@ -18,13 +18,13 @@ describe('Marketplace', () => {
     firstItem: {
       title: "Твердий дезодорант",
       desc: "Old Spice Wolfthorn Deodorant Stick",
-      price: 170
+      price: 171
     },
 
     secondItem: {
-      title: "Chloé",
-      desc: "Парфумована вода",
-      price: 1876
+      title: "Trussardi My Land",
+      desc: "Туалетна вода",
+      price: 768
     },
 
     searchedItem: "NIVEA"
@@ -50,12 +50,12 @@ describe('Marketplace', () => {
     homePage.clickOnCategory(categories.forMan);
 
     forManPage.addItemToBasket(items.firstItem.title);
-    cy.wait(5000);
+    cy.wait(7000);
     forManPage.closeBasket();
 
     forManPage.clickOnCategory(categories.gifts);
     giftsPage.addItemToBasket(items.secondItem.title);
-    cy.wait(5000);
+    cy.wait(7000);
     giftsPage.assertFirstItemInBasket(items.firstItem.title, items.firstItem.desc, items.firstItem.price);
     giftsPage.assertSecondItemInBasket(items.secondItem.title, items.secondItem.desc, items.secondItem.price);
     giftsPage.assertOrderPrice(items.firstItem.price, items.secondItem.price);
@@ -70,6 +70,7 @@ describe('Marketplace', () => {
   it('should provide an ability to subscribe to the news', () => {
     homePage.typeEmailInSubscribeFeld(email);
     homePage.clickOnSubmitBtn();
+    cy.wait(2000);
     homePage.assertSubscribing(subscribeMessage);
   });
 });
